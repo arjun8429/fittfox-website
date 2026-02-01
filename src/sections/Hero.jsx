@@ -10,20 +10,27 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <span className="hero-tag">Fox Mode On 🦊</span>
+        <span className="hero-tag">India’s Smart Makhana Supply Partner
+</span>
 
         <h1 className="hero-title">
-          Healthy, <br /> But Not Boring.
+        The Smarter Way <br /> to Source Makhana.
         </h1>
 
         <p className="hero-subtitle">
-          Smart makhana snacks for gym days, workdays,
-          and everything in between.
+        We source and supply all grades of premium makhana —
+  trusted by growing brands across India for quality,
+  consistency, and scale.
         </p>
 
         <div className="hero-actions">
-          <button className="btn-primary">Explore Flavors</button>
-          <button className="btn-secondary">Why FittFox?</button>
+          <button className="btn-secondary">Explore Our Grades</button>
+          <button
+  className="btn-primary"
+  onClick={() => document.getElementById("partner")?.scrollIntoView({ behavior: "smooth" })}
+>
+  Work With Us
+</button>
         </div>
       </motion.div>
     </section>
