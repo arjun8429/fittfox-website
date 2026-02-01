@@ -1,0 +1,57 @@
+import { useState } from "react";
+import "../styles/navbar.css";
+
+const Navbar = () => {
+  const [open, setOpen] = useState(false);
+
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+      setOpen(false);
+    }
+  };
+
+  return (
+    <header className="navbar">
+      <div className="navbar-container">
+        {/* Logo */}
+        <div className="logo" onClick={() => scrollToSection("hero")}>
+          FITT<span>FOX</span>
+        </div>
+
+        {/* Desktop Menu */}
+        <nav className="nav-links">
+          <button onClick={() => scrollToSection("vision")}>Vision</button>
+          <button onClick={() => scrollToSection("makhana")}>Makhana</button>
+          <button onClick={() => scrollToSection("audience")}>Who It’s For</button>
+          <button onClick={() => scrollToSection("partner")}>Partner</button>
+          <button onClick={() => scrollToSection("founders")}>About</button>
+        </nav>
+
+        {/* Mobile Hamburger */}
+        <div
+          className={`hamburger ${open ? "active" : ""}`}
+          onClick={() => setOpen(!open)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {open && (
+        <div className="mobile-menu">
+          <button onClick={() => scrollToSection("vision")}>Vision</button>
+          <button onClick={() => scrollToSection("makhana")}>Makhana</button>
+          <button onClick={() => scrollToSection("audience")}>Who It’s For</button>
+          <button onClick={() => scrollToSection("partner")}>Partner</button>
+          <button onClick={() => scrollToSection("founders")}>About</button>
+        </div>
+      )}
+    </header>
+  );
+};
+
+export default Navbar;

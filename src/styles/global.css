@@ -1,0 +1,56 @@
+:root {
+    --bg-black: #0b0b0b;
+    --bg-dark: #121212;
+    --white: #ffffff;
+    --muted: #b3b3b3;
+    --red: #e10600;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg-black);
+    color: var(--white);
+    line-height: 1.6;
+  }
+  
+  main {
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  section {
+    padding: 4rem 1.25rem;
+  }
+  
+  @media (min-width: 768px) {
+    section {
+      padding: 6rem 3rem;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    section {
+      padding: 8rem 6rem;
+    }
+  }
+
+  /* =========================
+   MOBILE BASELINE
+========================= */
+
+@media (max-width: 768px) {
+  body {
+    font-size: 15px;
+  }
+}
+  
