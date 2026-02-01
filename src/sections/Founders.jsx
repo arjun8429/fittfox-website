@@ -1,68 +1,90 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
 import "../styles/sections.css";
 
 export default function Founders() {
+  const [flipped, setFlipped] = useState(null);
+
+  const founders = [
+    {
+      name: "Arjun Sharma",
+      role: "Co-Founder",
+      email: "arjuns8429@gmail.com",
+      phone: "8825388731",
+    },
+    {
+      name: "Siddharth Singh",
+      role: "Co-Founder",
+      email: "siddharthsinghinsta09@gmail.com",
+      phone: "8340268944",
+    },
+    {
+      name: "Aditya Pratap Singh",
+      role: "Co-Founder",
+      email: "thakuradityasingh@gmail.com",
+      phone: "7007350679",
+    },
+  ];
+
   return (
     <section className="founders-section" id="founders">
-      <motion.div
-        className="founders-header"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
+      <div className="founders-header">
         <span className="section-tag">The People Behind FittFox</span>
-
         <h2>
-          Built by Engineers. <br /> Driven by Culture & Fitness.
+          Built by Engineers. <br />
+          Driven by Culture & Fitness.
         </h2>
-
-        <p className="founders-intro">
-          We are Computer Science graduates from Manipal Institute of Technology,
-          currently working with leading global technology companies.
-          <br /><br />
-          FittFox started with a simple idea — to modernize Indian superfoods
-          and build a fitness-first brand that feels relevant, premium,
-          and global.
-        </p>
-      </motion.div>
+      </div>
 
       <div className="founders-grid">
-        {[
-          {
-            name: "Arjun Sharma",
-            role: "Co-Founder",
-          },
-          {
-            name: "Siddharth Singh",
-            role: "Co-Founder",
-          },
-          {
-            name: "Aditya Pratap Singh",
-            role: "Co-Founder",
-          },
-        ].map((founder, index) => (
-          <motion.div
-            className="founder-card"
+        {founders.map((founder, index) => (
+          <div
             key={index}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.15 }}
-            viewport={{ once: true }}
+            className={`founder-flip-card ${
+              flipped === index ? "flipped" : ""
+            }`}
+            onClick={() =>
+              setFlipped(flipped === index ? null : index)
+            }
           >
-            <div className="founder-avatar">
-              {founder.name.charAt(0)}
-            </div>
+            <div className="founder-flip-inner">
+              {/* FRONT */}
+              <div className="founder-front">
+                <div className="founder-avatar">
+                  {founder.name.charAt(0)}
+                </div>
+                <h3>{founder.name}</h3>
+                <p className="founder-role">{founder.role}</p>
+                <span className="flip-hint">Tap to view contact</span>
+              </div>
 
-            <h3>{founder.name}</h3>
-            <p className="founder-role">{founder.role}</p>
+              {/* BACK */}
+              <div className="founder-back">
+                <h3>{founder.name}</h3>
 
-            <div className="founder-socials">
-              <span className="social-pill">LinkedIn</span>
-              <span className="social-pill">Instagram</span>
-              <span className="social-pill">X</span>
+                <a
+                  href={`mailto:${founder.email}`}
+                  className="founder-contact"
+                >
+                  📧 {founder.email}
+                </a>
+
+                <a
+                  href={`tel:${founder.phone}`}
+                  className="founder-contact"
+                >
+                  📞 {founder.phone}
+                </a>
+
+                <div className="founder-socials">
+                  <span className="social-pill">🔗 LinkedIn</span>
+                  <span className="social-pill">📸 Instagram</span>
+                  <span className="social-pill">❌ X</span>
+                </div>
+
+                <span className="flip-hint back">Tap to go back</span>
+              </div>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </section>
