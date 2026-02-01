@@ -1,10 +1,48 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import "../styles/sections.css";
 
+const cards = [
+  {
+    stage: "Discovery",
+    title: "First Batches",
+    tagline: "Small quantities. Serious intent.",
+    icon: "🧪",
+    description:
+      "Test multiple makhana grades, compare quality, and make confident sourcing decisions before committing at scale.",
+  },
+  {
+    stage: "Launch",
+    title: "Launch Ready",
+    tagline: "Confidence in every pack.",
+    icon: "🚀",
+    description:
+      "Lock the right grades and ensure consistent quality so your first customers experience exactly what your brand promises.",
+  },
+  {
+    stage: "Growth",
+    title: "Scaling Supply",
+    tagline: "Without surprises.",
+    icon: "📈",
+    description:
+      "Stable volumes, predictable grading, and clear communication to support your brand as demand grows.",
+  },
+  {
+    stage: "Bulk",
+    title: "Bulk & Repeat",
+    tagline: "Built for reliability.",
+    icon: "🔁",
+    description:
+      "Designed for repeat orders, large volumes, and long-term supply relationships with established brands.",
+  },
+];
 
 export default function Audience() {
+  const [active, setActive] = useState(null);
+
   return (
     <section className="audience-section" id="audience">
+      {/* Header */}
       <motion.div
         className="audience-header"
         initial={{ opacity: 0, y: 30 }}
@@ -12,41 +50,44 @@ export default function Audience() {
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
       >
-        <h2>Made for Your Kind of Days</h2>
+        <h2>From First Batch to Full Scale</h2>
         <p>
-          Different days. Same smart snacking.
+          We support brands at every stage of their makhana sourcing journey —
+          from early trials to consistent, large-scale supply.
         </p>
       </motion.div>
 
+      {/* Cards */}
       <div className="audience-grid">
-        {[
-          {
-            title: "Gym Days",
-            text: "High protein. Light crunch. Zero drama.",
-            emoji: "🏋️",
-          },
-          {
-            title: "Work Days",
-            text: "Clean energy without the crash.",
-            emoji: "💻",
-          },
-          {
-            title: "Chill Days",
-            text: "Snack freely. No guilt attached.",
-            emoji: "🎮",
-          },
-        ].map((item, index) => (
+        {cards.map((card, index) => (
           <motion.div
-            className="audience-card"
             key={index}
+            className={`audience-card ${active === index ? "flipped" : ""}`}
+            onClick={() =>
+              setActive(active === index ? null : index)
+            }
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.15 }}
+            transition={{ delay: index * 0.12 }}
             viewport={{ once: true }}
           >
-            <span className="audience-emoji">{item.emoji}</span>
-            <h3>{item.title}</h3>
-            <p>{item.text}</p>
+            <div className="audience-card-inner">
+              {/* FRONT */}
+              <div className="audience-card-front">
+                <span className="audience-stage">{card.stage}</span>
+                <div className="audience-icon">{card.icon}</div>
+                <h3>{card.title}</h3>
+                <p className="audience-tagline">{card.tagline}</p>
+                <span className="audience-hint">Tap to learn more</span>
+              </div>
+
+              {/* BACK */}
+              <div className="audience-card-back">
+                <h3>{card.title}</h3>
+                <p>{card.description}</p>
+                <span className="audience-hint">Tap to go back</span>
+              </div>
+            </div>
           </motion.div>
         ))}
       </div>
