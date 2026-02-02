@@ -118,4 +118,30 @@
       display: none;
     }
   }
-  
+
+
+/* =========================
+   CENTER LOGO (CLEAN)
+========================= */
+
+.navbar-center-logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-center-logo img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+/* Hide center logo on mobile */
+@media (max-width: 767px) {
+  .navbar-center-logo {
+    display: none;
+  }
+}
