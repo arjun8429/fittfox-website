@@ -825,12 +825,11 @@ button:focus {
 
 /* ⚠️ This rule can kill hover effects everywhere on touch devices.
    Keeping it since you had it, but it can also reduce nice button effects. */
-@media (hover: none) {
-  *:hover {
-    transform: none !important;
-    box-shadow: none !important;
+   @media (hover: none) {
+    *:hover {
+      box-shadow: none !important;
+    }
   }
-}
 
 /* ===========================================================
    IMPORTANT:
