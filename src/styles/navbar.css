@@ -1,127 +1,59 @@
 .navbar {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: rgba(11, 11, 11, 0.9);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  }
-  
-  .navbar-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 1rem 1.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .logo {
-    font-size: 1.25rem;
-    font-weight: 800;
-    letter-spacing: 1px;
-    cursor: pointer;
-  }
-  
-  .logo span {
-    color: var(--red);
-  }
-  
-  .nav-links {
-    display: none;
-  }
-  
-  .nav-links button {
-    background: none;
-    border: none;
-    color: var(--white);
-    margin-left: 2rem;
-    font-size: 0.95rem;
-    cursor: pointer;
-    position: relative;
-  }
-  
-  .nav-links button::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 0%;
-    height: 2px;
-    background: var(--red);
-    transition: width 0.3s ease;
-  }
-  
-  .nav-links button:hover::after {
-    width: 100%;
-  }
-  
-  /* Hamburger */
-  .hamburger {
-    width: 24px;
-    height: 18px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    cursor: pointer;
-  }
-  
-  .hamburger span {
-    height: 2px;
-    width: 100%;
-    background: var(--white);
-    transition: all 0.3s ease;
-  }
-  
-  .hamburger.active span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-  }
-  
-  .hamburger.active span:nth-child(2) {
-    opacity: 0;
-  }
-  
-  .hamburger.active span:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-  }
-  
-  /* Mobile Menu */
-  .mobile-menu {
-    display: flex;
-    flex-direction: column;
-    background: var(--bg-dark);
-    padding: 1.5rem;
-  }
-  
-  .mobile-menu button {
-    background: none;
-    border: none;
-    color: var(--white);
-    font-size: 1.2rem;
-    padding: 1rem 0;
-    text-align: left;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  }
-  
-  /* Desktop */
-  @media (min-width: 768px) {
-    .hamburger {
-      display: none;
-    }
-  
-    .nav-links {
-      display: flex;
-      align-items: center;
-    }
-  
-    .mobile-menu {
-      display: none;
-    }
-  }
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(11, 11, 11, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
 
+/* Container */
+.navbar-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0.85rem 1.25rem; /* tighter = less black gap */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
 
 /* =========================
-   CENTER LOGO (CLEAN)
+   DESKTOP TEXT LOGO
+========================= */
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.logo span {
+  color: var(--red);
+}
+
+.desktop-logo {
+  display: block;
+}
+
+/* =========================
+   MOBILE LOGO ICON
+========================= */
+
+.mobile-logo {
+  display: none;
+  cursor: pointer;
+}
+
+.mobile-logo img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+/* =========================
+   CENTER LOGO (DESKTOP ONLY)
 ========================= */
 
 .navbar-center-logo {
@@ -134,13 +66,134 @@
 }
 
 .navbar-center-logo img {
-  width: 64px;
-  height: 64px;
+  width: 36x;
+  height: 36px;
   object-fit: contain;
 }
 
-/* Hide center logo on mobile */
+/* =========================
+   NAV LINKS (DESKTOP)
+========================= */
+
+.nav-links {
+  display: none;
+}
+
+.nav-links button {
+  background: none;
+  border: none;
+  color: var(--white);
+  margin-left: 2rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  position: relative;
+}
+
+.nav-links button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: var(--red);
+  transition: width 0.3s ease;
+}
+
+.nav-links button:hover::after {
+  width: 100%;
+}
+
+/* =========================
+   HAMBURGER
+========================= */
+
+.hamburger {
+  width: 24px;
+  height: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.hamburger span {
+  height: 2px;
+  width: 100%;
+  background: var(--white);
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+.mobile-menu {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-dark);
+  padding: 1.25rem;
+}
+
+.mobile-menu button {
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 1.05rem;
+  padding: 0.9rem 0;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* =========================
+   RESPONSIVE BEHAVIOR
+========================= */
+
+@media (min-width: 768px) {
+  .hamburger {
+    display: none;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+  }
+
+  .mobile-menu {
+    display: none;
+  }
+
+  .mobile-logo {
+    display: none;
+  }
+
+  .desktop-logo {
+    display: block;
+  }
+}
+
 @media (max-width: 767px) {
+  .desktop-logo {
+    display: none;
+  }
+
+  .mobile-logo {
+    display: flex;
+    align-items: center;
+  }
+
   .navbar-center-logo {
     display: none;
   }
