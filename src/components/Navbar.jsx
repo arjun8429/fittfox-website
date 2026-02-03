@@ -94,12 +94,12 @@ const Navbar = () => {
           className="mobile-logo"
           onClick={() => scrollToSection("hero")}
         >
-          <img src="/logo.png" alt="FittFox Logo" />
+          <img src="/logo2.png" alt="FittFox Logo" />
         </div>
 
         {/* CENTER: Desktop Center Logo */}
         <div className="navbar-center-logo">
-          <img src="/logo.png" alt="FittFox Logo" />
+          <img src="/logo2.png" alt="FittFox Logo" />
         </div>
 
         {/* RIGHT: Desktop Menu */}
