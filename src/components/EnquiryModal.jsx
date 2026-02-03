@@ -3,15 +3,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { locationData } from "../data/locationdata";
 import "../styles/EnquiryModal.css";
 
-export default function EnquiryModal({ open, onClose, intent }) {
-  // ✅ HOOKS MUST ALWAYS RUN
+export default function EnquiryModal({ open, onClose, intent = "enquiry" }) {
+  /* ---------------------------
+     LOCATION STATE (UNCHANGED)
+  ---------------------------- */
   const countries = Object.keys(locationData);
 
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
 
-  // Reset when modal opens
   useEffect(() => {
     if (open) {
       setCountry("");
@@ -21,8 +22,33 @@ export default function EnquiryModal({ open, onClose, intent }) {
   }, [open]);
 
   const states = country ? Object.keys(locationData[country]) : [];
-  const cities =
-    country && state ? locationData[country][state] : [];
+  const cities = country && state ? locationData[country][state] : [];
+
+  /* ---------------------------
+     INTENT-BASED COPY (NEW)
+  ---------------------------- */
+  const copyMap = {
+    partner: {
+      title: "Become a FittFox Partner",
+      subtitle:
+        "Share a few details about your business. Our partnerships team will personally review and reach out.",
+      cta: "Apply for Partnership",
+    },
+    conversation: {
+      title: "Start a Sourcing Conversation",
+      subtitle:
+        "Tell us what you’re exploring. We’ll help you understand sourcing options, timelines, and next steps.",
+      cta: "Start Conversation",
+    },
+    enquiry: {
+      title: "Send an Enquiry",
+      subtitle:
+        "Have a question or requirement? Share the details and we’ll get back to you shortly.",
+      cta: "Submit Enquiry",
+    },
+  };
+
+  const { title, subtitle, cta } = copyMap[intent] || copyMap.enquiry;
 
   return (
     <AnimatePresence>
@@ -38,31 +64,19 @@ export default function EnquiryModal({ open, onClose, intent }) {
           >
             {/* HEADER */}
             <div className="modal-header">
-              <h3>
-                {intent === "partner"
-                  ? "Become a Partner"
-                  : "Start a Conversation"}
-              </h3>
-
-              <button
-                className="modal-close-icon"
-                onClick={onClose}
-              >
+              <h3>{title}</h3>
+              <button className="modal-close-icon" onClick={onClose}>
                 ×
               </button>
             </div>
 
-            <p className="modal-subtext">
-              {intent === "partner"
-                ? "Tell us about your brand and partnership interest."
-                : "Share a few details and our sourcing team will reach out."}
-            </p>
+            <p className="modal-subtext">{subtitle}</p>
 
             {/* FORM */}
             <form className="enquiry-form">
-              {/* PERSONAL */}
+              {/* YOUR DETAILS */}
               <div className="form-section">
-                <h4>Personal Details</h4>
+                <h4>Your Details</h4>
 
                 <div className="form-grid">
                   <input required placeholder="First Name *" />
@@ -72,15 +86,15 @@ export default function EnquiryModal({ open, onClose, intent }) {
                 <input
                   required
                   type="email"
-                  placeholder="Email ID *"
+                  placeholder="Email Address *"
                 />
 
                 <div className="phone-row">
                   <select required>
-                    <option value="">Code</option>
-                    <option>+91</option>
-                    <option>+1</option>
-                    <option>+44</option>
+                    <option value="">Country Code</option>
+                    <option value="+91">+91 (India)</option>
+                    <option value="+1">+1 (USA)</option>
+                    <option value="+44">+44 (UK)</option>
                   </select>
 
                   <input
@@ -90,18 +104,18 @@ export default function EnquiryModal({ open, onClose, intent }) {
                 </div>
               </div>
 
-              {/* BRAND */}
+              {/* BUSINESS */}
               <div className="form-section">
-                <h4>Brand Details</h4>
+                <h4>Your Brand / Business</h4>
 
                 <input
                   required
-                  placeholder="Company Name *"
+                  placeholder="Company / Brand Name *"
                 />
 
                 <input
                   required
-                  placeholder="Company Sector *"
+                  placeholder="Business Type (Retail, Gym, Café, Distributor, etc.) *"
                 />
 
                 <div className="form-grid">
@@ -157,20 +171,18 @@ export default function EnquiryModal({ open, onClose, intent }) {
 
               {/* NOTES */}
               <div className="form-section">
-                <h4>Additional Notes (Optional)</h4>
+                <h4>Anything we should know? (Optional)</h4>
 
                 <textarea
-                  placeholder="Anything you'd like us to know — volumes, timelines, locations, etc."
+                  placeholder="Volumes, timelines, sourcing needs, preferred regions, or any specific questions…"
                 />
               </div>
 
               <button
                 type="submit"
-                className="btn-primary submit-btn"
+                className="submit-btn"
               >
-                {intent === "partner"
-                  ? "Apply for Partnership"
-                  : "Submit Enquiry"}
+                {cta}
               </button>
             </form>
           </motion.div>
