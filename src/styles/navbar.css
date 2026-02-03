@@ -198,3 +198,56 @@
     display: none;
   }
 }
+
+
+/* =========================
+   MOBILE TEXT LOGO
+========================= */
+
+.mobile-text-logo {
+  display: none;
+  font-size: 1.05rem;   /* fits perfectly between icon & hamburger */
+  font-weight: 800;
+  letter-spacing: 1px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* =========================
+   RESPONSIVE RULES
+========================= */
+
+@media (max-width: 767px) {
+  .desktop-logo {
+    display: none;
+  }
+
+  .navbar-center-logo {
+    display: none;
+  }
+
+  .mobile-logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .mobile-text-logo {
+    display: block;
+  }
+
+  .navbar-container {
+    justify-content: space-between;
+    gap: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  .mobile-logo,
+  .mobile-text-logo {
+    display: none;
+  }
+
+  .desktop-logo {
+    display: block;
+  }
+}

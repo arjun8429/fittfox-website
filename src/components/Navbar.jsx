@@ -14,39 +14,49 @@
 
 //   return (
 //     <header className="navbar">
-//      <div className="navbar-container">
-//   {/* Left: Text Logo */}
-//   <div className="logo" onClick={() => scrollToSection("hero")}>
-//     FITT<span>FOX</span>
-//   </div>
+//       <div className="navbar-container">
+//         {/* LEFT: Desktop Text Logo */}
+//         <div
+//           className="logo desktop-logo"
+//           onClick={() => scrollToSection("hero")}
+//         >
+//           FITT<span>FOX</span>
+//         </div>
 
-//   {/* Center: Fox Logo */}
-//   <div className="navbar-center-logo">
-//     <img src="/logo.png" alt="FittFox Logo" />
-//   </div>
+//         {/* LEFT: Mobile Logo Icon */}
+//         <div
+//           className="mobile-logo"
+//           onClick={() => scrollToSection("hero")}
+//         >
+//           <img src="/logo2.png" alt="FittFox Logo" />
+//         </div>
 
-//   {/* Right: Desktop Menu */}
-//   <nav className="nav-links">
-//     <button onClick={() => scrollToSection("vision")}>Vision</button>
-//     <button onClick={() => scrollToSection("makhana")}>Makhana</button>
-//     <button onClick={() => scrollToSection("audience")}>Who It’s For</button>
-//     <button onClick={() => scrollToSection("partner")}>Partner</button>
-//     <button onClick={() => scrollToSection("founders")}>About</button>
-//   </nav>
+//         {/* CENTER: Desktop Center Logo */}
+//         <div className="navbar-center-logo">
+//           <img src="/logo2.png" alt="FittFox Logo" />
+//         </div>
 
-//   {/* Mobile Hamburger */}
-//   <div
-//     className={`hamburger ${open ? "active" : ""}`}
-//     onClick={() => setOpen(!open)}
-//   >
-//     <span></span>
-//     <span></span>
-//     <span></span>
-//   </div>
-// </div>
+//         {/* RIGHT: Desktop Menu */}
+//         <nav className="nav-links">
+//           <button onClick={() => scrollToSection("vision")}>Vision</button>
+//           <button onClick={() => scrollToSection("makhana")}>Makhana</button>
+//           <button onClick={() => scrollToSection("audience")}>Who It’s For</button>
+//           <button onClick={() => scrollToSection("partner")}>Partner</button>
+//           <button onClick={() => scrollToSection("founders")}>About</button>
+//         </nav>
 
+//         {/* Mobile Hamburger */}
+//         <div
+//           className={`hamburger ${open ? "active" : ""}`}
+//           onClick={() => setOpen(!open)}
+//         >
+//           <span></span>
+//           <span></span>
+//           <span></span>
+//         </div>
+//       </div>
 
-//       {/* Mobile Menu (unchanged) */}
+//       {/* Mobile Menu */}
 //       {open && (
 //         <div className="mobile-menu">
 //           <button onClick={() => scrollToSection("vision")}>Vision</button>
@@ -61,7 +71,6 @@
 // };
 
 // export default Navbar;
-
 
 
 import { useState } from "react";
@@ -81,15 +90,7 @@ const Navbar = () => {
   return (
     <header className="navbar">
       <div className="navbar-container">
-        {/* LEFT: Desktop Text Logo */}
-        <div
-          className="logo desktop-logo"
-          onClick={() => scrollToSection("hero")}
-        >
-          FITT<span>FOX</span>
-        </div>
-
-        {/* LEFT: Mobile Logo Icon */}
+        {/* LEFT: Mobile Icon Logo */}
         <div
           className="mobile-logo"
           onClick={() => scrollToSection("hero")}
@@ -97,12 +98,28 @@ const Navbar = () => {
           <img src="/logo2.png" alt="FittFox Logo" />
         </div>
 
-        {/* CENTER: Desktop Center Logo */}
+        {/* CENTER (MOBILE): Text Logo */}
+        <div
+          className="logo mobile-text-logo"
+          onClick={() => scrollToSection("hero")}
+        >
+          FITT<span>FOX</span>
+        </div>
+
+        {/* LEFT (DESKTOP): Text Logo */}
+        <div
+          className="logo desktop-logo"
+          onClick={() => scrollToSection("hero")}
+        >
+          FITT<span>FOX</span>
+        </div>
+
+        {/* CENTER (DESKTOP): Icon Logo */}
         <div className="navbar-center-logo">
           <img src="/logo2.png" alt="FittFox Logo" />
         </div>
 
-        {/* RIGHT: Desktop Menu */}
+        {/* DESKTOP MENU */}
         <nav className="nav-links">
           <button onClick={() => scrollToSection("vision")}>Vision</button>
           <button onClick={() => scrollToSection("makhana")}>Makhana</button>
@@ -111,7 +128,7 @@ const Navbar = () => {
           <button onClick={() => scrollToSection("founders")}>About</button>
         </nav>
 
-        {/* Mobile Hamburger */}
+        {/* HAMBURGER */}
         <div
           className={`hamburger ${open ? "active" : ""}`}
           onClick={() => setOpen(!open)}
@@ -122,7 +139,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* MOBILE MENU */}
       {open && (
         <div className="mobile-menu">
           <button onClick={() => scrollToSection("vision")}>Vision</button>
