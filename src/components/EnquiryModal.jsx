@@ -145,6 +145,9 @@ const SHARED_QUESTIONS = [
 
 const RATINGS = ["Poor", "Average", "Good", "Great", "Loved it!"];
 
+// Paste your Google Apps Script Web App URL here after deployment
+const GOOGLE_SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+
 // ─── COMPONENT ─────────────────────────────────────────────────────────────────
 export default function SattuPoll({ open, onClose }) {
   // steps: 0=intro, 1=flavour-select, 2=rank(multi) or rate(single), 3=contextual-q, 4=shared-q, 5=text, 6=done
@@ -156,6 +159,7 @@ export default function SattuPoll({ open, onClose }) {
   const [sharedAnswers, setSharedAnswers] = useState({});
   const [feedbackText, setFeedbackText] = useState("");
   const [name, setName] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const isMulti = triedFlavors.length > 1;
   const triedFlavorObjects = FLAVORS.filter((f) => triedFlavors.includes(f.id));
@@ -197,6 +201,53 @@ export default function SattuPoll({ open, onClose }) {
     setSharedAnswers({});
     setFeedbackText("");
     setName("");
+    setIsSubmitting(false);
+  };
+
+
+  const submitFeedback = async () => {
+    if (isSubmitting) return;
+
+    const ranking = isMulti
+      ? orderedFlavors.map((flavor, index) => ({
+          rank: index + 1,
+          id: flavor.id,
+          name: flavor.name,
+        }))
+      : [];
+
+    const triedFlavorNames = triedFlavorObjects.map((flavor) => flavor.name);
+
+    const payload = {
+      submittedAt: new Date().toISOString(),
+      name: name || "Anonymous",
+      triedFlavorIds: triedFlavors,
+      triedFlavorNames,
+      ranking,
+      ratings: flavorRating,
+      flavourSpecificAnswers: contextAnswers,
+      productAnswers: sharedAnswers,
+      openFeedback: feedbackText,
+      pageUrl: window.location.href,
+      userAgent: navigator.userAgent,
+    };
+
+    try {
+      setIsSubmitting(true);
+
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify(payload),
+      });
+
+      setStep(6);
+    } catch (error) {
+      console.error("Feedback submission failed:", error);
+      alert("Sorry, feedback could not be submitted. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (!open) return null;
@@ -525,9 +576,19 @@ export default function SattuPoll({ open, onClose }) {
                 <div style={styles.charCount}>{feedbackText.length} characters</div>
                 <div style={styles.navRow}>
                   <button style={styles.ghostBtn} onClick={() => setStep(4)}>← Back</button>
-                  <button style={styles.skipBtn} onClick={() => setStep(6)}>Skip</button>
-                  <button style={{ ...styles.primaryBtn, flex: 1 }} onClick={() => setStep(6)}>
-                    Submit ✓
+                  <button
+                    style={{ ...styles.skipBtn, opacity: isSubmitting ? 0.6 : 1 }}
+                    onClick={submitFeedback}
+                    disabled={isSubmitting}
+                  >
+                    Skip
+                  </button>
+                  <button
+                    style={{ ...styles.primaryBtn, flex: 1, opacity: isSubmitting ? 0.7 : 1 }}
+                    onClick={submitFeedback}
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Submitting..." : "Submit ✓"}
                   </button>
                 </div>
               </motion.div>
