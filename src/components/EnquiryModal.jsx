@@ -146,7 +146,7 @@ const SHARED_QUESTIONS = [
 const RATINGS = ["Poor", "Average", "Good", "Great", "Loved it!"];
 
 // Paste your Google Apps Script Web App URL here after deployment
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzusevuXjrYCCYeIM4U2eT2A0B1WtYJkFRsmSspumwbQa8stJQqFXm-Ik2OF53WAg_rJw/exec"
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzusevuXjrYCCYeIM4U2eT2A0B1WtYJkFRsmSspumwbQa8stJQqFXm-Ik2OF53WAg_rJw/exec";
 
 // ─── COMPONENT ─────────────────────────────────────────────────────────────────
 export default function SattuPoll({ open, onClose }) {
@@ -235,9 +235,14 @@ export default function SattuPoll({ open, onClose }) {
     try {
       setIsSubmitting(true);
 
+      console.log("Submitting FittFox feedback:", payload);
+
       await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8",
+        },
         body: JSON.stringify(payload),
       });
 
