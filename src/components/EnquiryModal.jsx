@@ -237,9 +237,13 @@ export default function SattuPoll({ open, onClose }) {
 
       console.log("Submitting FittFox feedback:", payload);
 
+      // Google Apps Script works best from static frontends with a simple no-cors POST.
+      // Do not use application/json here because it can trigger a CORS preflight.
       await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
+        redirect: "follow",
+        keepalive: true,
         headers: {
           "Content-Type": "text/plain;charset=utf-8",
         },
