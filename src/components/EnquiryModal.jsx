@@ -147,7 +147,7 @@ const RATINGS = ["Poor", "Average", "Good", "Great", "Loved it!"];
 
 // Paste your Google Apps Script Web App URL here after deployment
 //const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw91D4ZX2sqRZM4Yu_2i9oUSOlbEst-Wb25GXlFMu8zF5Nn5gMYlPDcQmHAZ0EXjhwfpg/exec";
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyT8tT-a0yPiya9r97SC4tB691LN86cj6blHiN3lbiXmDti8HdQir24RaRReotWrXtD/exec"
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyT8tT-a0yPiya9r97SC4tB691LN86cj6blHiN3lbiXmDti8HdQir24RaRReotWrXtD/exec"
 // ─── COMPONENT ─────────────────────────────────────────────────────────────────
 export default function SattuPoll({ open, onClose }) {
   // steps: 0=intro, 1=flavour-select, 2=rank(multi) or rate(single), 3=contextual-q, 4=shared-q, 5=text, 6=done
