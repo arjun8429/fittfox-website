@@ -268,7 +268,6 @@ export default function SattuPoll({ open, onClose }) {
       flavourAnswers: flavorAnswers,
       productAnswers: sharedAnswers,
       openFeedback: feedbackText,
-      pageUrl: window.location.href,
     };
 
     try {
