@@ -3,7 +3,8 @@ import { motion, AnimatePresence, Reorder } from "framer-motion";
 
 // ─── CONFIG ────────────────────────────────────────────────────────────────────
 const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbxe4Xu73enYc3QYzi6N5TZAqg1sV1e44PM79Jtr86MOATOW9WZ-J0fsSyRErFXvEUy5Mw/exec";
+//  "https://script.google.com/macros/s/AKfycbxe4Xu73enYc3QYzi6N5TZAqg1sV1e44PM79Jtr86MOATOW9WZ-J0fsSyRErFXvEUy5Mw/exec";
+  "https://script.google.com/macros/s/AKfycbwMAyCwIx03DdRnvJGcDl0Zf5b4qd1glJ1UtfoXl0LRbe9zS-Kk0NeaikuOK7QpSWB29Q/exec";
 
 // ─── FLAVOR DATA ───────────────────────────────────────────────────────────────
 const FLAVORS = [
