@@ -712,16 +712,19 @@ export default function SattuPoll({ open, onClose }) {
 const s = {
   backdrop: {
     position: "fixed",
-    inset: 0,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: "100vw",
+    height: "100vh",
     background: "rgba(0,0,0,0.52)",
     backdropFilter: "blur(6px)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    zIndex: 1000,
+    display: "grid",
+    placeItems: "center",
+    zIndex: 9999,
     padding: 20,
     boxSizing: "border-box",
-    overflowY: "auto",
   },
 
   card: {
@@ -729,12 +732,13 @@ const s = {
     borderRadius: 24,
     width: "100%",
     maxWidth: 480,
-    maxHeight: "calc(100dvh - 40px)",
+    maxHeight: "calc(100vh - 40px)",
     display: "flex",
     flexDirection: "column",
     overflow: "hidden",
     boxShadow: "0 16px 50px rgba(0,0,0,0.18)",
   },
+  
   header: {
     display: "flex", justifyContent: "space-between", alignItems: "center",
     padding: "14px 20px 12px",
